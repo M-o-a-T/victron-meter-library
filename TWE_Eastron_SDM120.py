@@ -1,4 +1,4 @@
-# VenusOS module for support of Eastron SDM120-Modbus v1
+# VenusOS module for support of Eastron SDM120-Modbus
 # might work also with other Eastron devices > Product code on 0x001c (type u16b) to be added into models overview
 # 
 
@@ -15,10 +15,10 @@ class Reg_f32b(Reg_num):
         self.coding = ('>f', '>2H')
         self.scale = float(self.scale)
 		
-nr_phases = [ 0, 1, 3, 3 ]
+nr_phases = [ 1, 1, 3, 3 ]
 
 phase_configs = [
-    'undefined',
+    '1P',
     '1P',
     '3P.1',
     '3P.n',
@@ -38,8 +38,8 @@ class Eastron_SDM120(device.EnergyMeter):
         self.info_regs = [
             Reg_u16( 0xfc02, '/HardwareVersion'),
             Reg_u16( 0xfc03, '/FirmwareVersion'),
-            # Reg_f32b( 0x000a, '/PhaseConfig', text=phase_configs, write=(0, 3)),
-            Reg_u32b(0x0014, '/Serial'),
+            Reg_f32b(0x000a, '/PhaseConfig', text=phase_configs, write=(0, 3)),
+            Reg_u32b(0xfc00, '/Serial'),
         ]
 
     def phase_regs(self, n):
@@ -56,7 +56,7 @@ class Eastron_SDM120(device.EnergyMeter):
 
         self.read_info()
 
-        phases = 1
+        phases = nr_phases[int(self.info['/PhaseConfig'])]
 
         regs = [
             Reg_f32b(0x000c, '/Ac/Power',          1, '%.1f W'),
@@ -78,12 +78,12 @@ class Eastron_SDM120(device.EnergyMeter):
 
 # identifier to be checked, if register identical on all SDM120 (only first 16 bytes in u16b of 32 bit register 0xfc02)
 models = {
-    16512: {
-        'model':    'SDM120Modbusv1',
+    32: {
+        'model':    'SDM120Modbus',
         'handler':  Eastron_SDM120,
     },
 }
 
-probe.add_handler(probe.ModelRegister(0x001c, models,
+probe.add_handler(probe.ModelRegister(0xfc02, models,
                                       methods=['tcp','rtu'],
                                       units=[1]))
