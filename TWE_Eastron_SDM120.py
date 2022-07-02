@@ -80,7 +80,7 @@ class Eastron_SDM120(device.EnergyMeter):
 models = {
     16512: {
         'model':    'SDM120Modbusv1',
-        'handler':  Eastron_SDM630v1,
+        'handler':  Eastron_SDM120,
     },
 }
 
