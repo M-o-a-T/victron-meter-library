@@ -1,7 +1,10 @@
 from copy import copy
 import dbus
 from functools import partial
-from pymodbus.client.sync import *
+try:
+    from pymodbus.client.sync import *
+except ImportError:
+    from pymodbus.client import *
 from pymodbus.register_read_message import ReadHoldingRegistersResponse
 import logging
 import os
