@@ -10,10 +10,9 @@ from register import *
 log = logging.getLogger()
 
 class Reg_f32b(Reg_num):
-    def __init__(self, base, *args, **kwargs):
-        super(Reg_f32b, self).__init__(base, 2, *args, **kwargs)
-        self.coding = ('>f', '>2H')
-        self.scale = float(self.scale)
+    coding = ('>f', '>2H')
+    count = 2
+    rtype = float
 		
 nr_phases = [ 1, 1, 3, 3 ]
 
