@@ -83,6 +83,6 @@ models = {
 }
 
 
-probe.add_handler(probe.ModelRegister(0x8960, models,
+probe.add_handler(probe.ModelRegister(Reg_u16(0x8960), models,
                                       methods=['tcp','rtu'],
                                       units=[1]))
