@@ -30,7 +30,7 @@ class ModbusDevice(device.ModbusDevice):
         start = regs[0].base
         count = regs[-1].base + regs[-1].count - start
 
-        rr = self.modbus.read_holding_registers(start, count, unit=self.unit)
+        rr = self.modbus.read_input_registers(start, count, unit=self.unit)
 
         latency = time.time() - now
 
