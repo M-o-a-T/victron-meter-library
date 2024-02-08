@@ -14,10 +14,9 @@ from register import *
 log = logging.getLogger()
 
 class Reg_u64b(Reg_num):
-    def __init__(self, base, *args, **kwargs):
-        super(Reg_u64b, self).__init__(base, 4, *args, **kwargs)
-        self.coding = ('>Q', '>4H')
-        self.scale = float(self.scale)
+    coding = ('>Q', '>4H')
+    count = 4
+    rtype = float
 
 nr_phases = [ 1, 3, 3 ]
 
