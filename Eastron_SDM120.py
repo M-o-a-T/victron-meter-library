@@ -3,7 +3,7 @@
 # 
 
 import logging
-import TWE_Eastron_device as device
+import Eastron_device as device
 import probe
 from register import *
 

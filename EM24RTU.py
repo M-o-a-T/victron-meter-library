@@ -9,7 +9,7 @@
 # For any usage a donation to seashepherd.org with an amount of 5 USD/EUR/GBP or equivalent is expected
 
 import logging
-import TWE_EM24RTU_device as device
+import EM24RTU_device as device
 import probe
 from register import *
 

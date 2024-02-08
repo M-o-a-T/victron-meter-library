@@ -8,7 +8,7 @@
 # For any usage a donation to seashepherd.org with an amount of 5 USD/EUR/GBP or equivalent is expected
 
 import logging
-import TWE_Eastron_device as device
+import Eastron_device as device
 import probe
 from register import *
 
